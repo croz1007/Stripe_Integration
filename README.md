@@ -9,7 +9,7 @@ Build a disposable Rails app and integrate with Stripe. Ideally, with a flow tha
     * What would you expect / wish / like Stripe to just handle for you but they don't?
     * What made you feel dumb? Did it feel like Stripe expects you to just know stuff about credit card processing that you didn't?
 * A daily demo of progress to an interested stakeholder. (Zach works, but he'll be out until Wednesday the 21st)
-* A publicly deployed, server-rendered Rails "subscription" app. (Heroku, Azure, AWS, something else, I don't care.)
+* A publicly deployed, server-rendered Rails "subscription" app. URL: https://sleepy-brook-8938.herokuapp.com/
     * Public landing page at /.
     * User registration page at /signup
     * A subscription signup at /subscribe page that gives users the option of using a credit card to pay $1.99/ day, $9.99/month or $99/ year. (This page should only be available to registered users. It'll make life a touch easier.)
@@ -27,4 +27,4 @@ _____
 * Testing the "limbo" notifications. (Sign a user up with a good card from https://stripe.com/docs/testing, and then change it to 4000000000000341 right before the charge recurs. )
 * Pro rated refunds for multiple subscription types.
 
-*API Documentation: https://stripe.com/docs/api/ruby#authentication*
+*Stripe API Documentation: https://stripe.com/docs/api/ruby#authentication*
