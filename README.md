@@ -45,4 +45,5 @@ _____
 * Pro rated refunds for multiple subscription types.
 
 *Stripe API Testing Dashboard: https://dashboard.stripe.com/test/dashboard*
+
 *Stripe API Documentation: https://stripe.com/docs/api/ruby#authentication*
