@@ -4,6 +4,8 @@
 
 Build a disposable Rails app and integrate with Stripe. Ideally, with a flow that supports subscriptions.
 
+_____
+
 ### Deliverables
 * Written analysis of what's confusing/ challenging about the Stripe integration process.
     * What would you expect / wish / like Stripe to just handle for you but they don't?
@@ -12,6 +14,8 @@ Build a disposable Rails app and integrate with Stripe. Ideally, with a flow tha
 * A daily demo of progress to an interested stakeholder.
 * A publicly deployed, server-rendered Rails "subscription" app.
     * URL: https://sleepy-brook-8938.herokuapp.com/
+
+_____
 
 ### Spec
 * Public landing page at */*.
