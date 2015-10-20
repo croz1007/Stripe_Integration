@@ -35,7 +35,9 @@ _____
 
 ### Some Potential Challenges
 * Staying productive with loose requirements. (Try not to take more than 2-3 weeks because the total time available for spike might not be much more than that.)
-* Testing the "limbo" notifications. (Sign a user up with a good card from https://stripe.com/docs/testing, and then change it to 4000000000000341 right before the charge recurs. )
+* Testing the "limbo" notifications.
+    * Sign a user up with a good card from https://stripe.com/docs/testing
+    * Change it to a bad card right before the charge recurs.
 * Pro rated refunds for multiple subscription types.
 
 *Stripe API Documentation: https://stripe.com/docs/api/ruby#authentication*
