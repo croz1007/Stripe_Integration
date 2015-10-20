@@ -20,16 +20,16 @@ Build a disposable Rails app and integrate with Stripe. Ideally, with a flow tha
     * $1.99/ day
     * $9.99/month
     * $99/ year
-    *This page should only be available to registered users. It'll make life a touch easier.*
+    * *This page should only be available to registered users. It'll make life a touch easier.*
 * A subscription cancellation page at */cancel* that gives subscribed users a pro-rated refund based on the time left in the subscription period
-    *Note the monthly and annual payment options*
+    * *Note the monthly and annual payment options*
 * A settings page at /settings that
     * redirects users that aren't subscribed to */subscribe* and redirects logged out users to */*
     * Allows subscribed users to change which card gets billed.
-      *Stripe can update some basic card information (exp month, exp year, etc.), but a new card must be added to change the card.*
+      * *Stripe can update some basic card information (exp month, exp year, etc.), but a new card must be added to change the card.*
 * A "limbo" notification if a card is accepted at the time of subscription, but declined upon a recurring charge.
 * The ability to update a limbo account with a good cart to make the notification go away.
-    *Don't forget to charge the user appropriately.*
+    * *Don't forget to charge the user appropriately.*
 
 _____
 
