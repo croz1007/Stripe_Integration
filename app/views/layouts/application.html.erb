@@ -12,6 +12,11 @@
 
   <p class="alert"><%= alert %></p>
 
+  <% if customer_signed_in? %>
+    <%= current_customer.email %> | <%= link_to "logout", destroy_customer_session_path %>
+  <% else %>
+    <%= link_to "Sign up!", new_customer_registration_path %>
+  <% end %>
 <%= yield %>
 
 </body>
