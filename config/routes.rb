@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   #TODO: change route for signup to be /signup instead of /customers/sign_up
   devise_for :customers, :skip => [:registrations, :sessions]
 
-  as :customer do 
+  as :customer do
     get 'signup' => 'devise/registrations#new', :as => :new_customer_registration
     get 'cancel' => 'devise/registrations#cancel', :as => :cancel_customer_registration
     post '' => 'devise/registrations#create', :as => :customer_registration

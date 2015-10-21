@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
   </head>
@@ -22,11 +21,17 @@
           </button>
           <%= link_to 'Stripe Integration', root_path, :class => "navbar-brand"  %>
         </div>
-
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to 'Home', root_path %></li>
+            <% if customer_signed_in? %>
+              <li><a href="#">Signed in as: <%= current_customer.email %></a></li>
+              <li><%= link_to "Logout", destroy_customer_session_path, :method => :delete %></li>
+            <% else %>
+              <li><%= link_to "Login", new_customer_session_path %></li>
+              <li><%= link_to "Sign up!", new_customer_registration_path %></li>
+            <% end %>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
@@ -40,7 +45,7 @@
       <% end %>
 
       <%= yield %>
-      
+
     </div>
   </body>
 </html>
