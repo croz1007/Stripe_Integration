@@ -31,9 +31,13 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="container-fluid">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+    <div id="main-container" class="container-fluid">
+      <%- if notice.present? %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+      <%- if alert.present? %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
 
       <% if customer_signed_in? %>
         <%= current_customer.email %> | <%= link_to "logout", destroy_customer_session_path %>
