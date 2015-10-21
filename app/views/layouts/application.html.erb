@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>StripeIntegration</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title>Stripe Integration<%= @title %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-  <p class="notice"><%= notice %></p>
+    <p class="notice"><%= notice %></p>
 
-  <p class="alert"><%= alert %></p>
+    <p class="alert"><%= alert %></p>
 
-  <% if customer_signed_in? %>
-    <%= current_customer.email %> | <%= link_to "logout", destroy_customer_session_path %>
-  <% else %>
-    <%= link_to "Sign up!", new_customer_registration_path %>
-  <% end %>
-<%= yield %>
+    <% if customer_signed_in? %>
+      <%= current_customer.email %> | <%= link_to "logout", destroy_customer_session_path %>
+    <% else %>
+      <%= link_to "Sign up!", new_customer_registration_path %>
+    <% end %>
 
-</body>
+    <%= yield %>
+
+  </body>
 </html>
