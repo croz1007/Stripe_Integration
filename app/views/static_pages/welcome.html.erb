@@ -1,6 +1,6 @@
 <h1>Welcome!</h1>
 <% if customer_signed_in? %>
-  <%= current_customer.email %> | <%= link_to "logout", destroy_customer_session_path %>
+  <%= current_customer.email %> | <%= link_to "logout", destroy_customer_session_path, :method => :delete %>
 <% else %>
   <%= link_to "Sign up!", new_customer_registration_path %>
 <% end %>
