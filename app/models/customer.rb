@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 
 class Customer < ActiveRecord::Base
   # Include default devise modules. Others available are:
