@@ -9,6 +9,9 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
+    #this creates a card for the user
+    @customer.sources.create(:source => params[:stripeToken])
+
     @customer.subscriptions.create(:plan => params[:plan_id])
   rescue Stripe::CardError => e
     flash[:error] = e.message

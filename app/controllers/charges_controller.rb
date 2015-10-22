@@ -7,12 +7,13 @@ class ChargesController < ApplicationController
     # Amount in cents from plan
     @amount = 500
 
-    customer = Stripe::Customer.retrieve(current_customer.stripe_id)
-    customer.sources.create(:source => params[:stripeToken])
+    @customer = Stripe::Customer.retrieve(current_customer.stripe_id)
 
-    # Customer must have card stored
+    #this creates a card for the user
+    @customer.sources.create(:source => params[:stripeToken])
+
     charge = Stripe::Charge.create(
-      :customer => customer.id,
+      :customer => @customer.id,
       :amount => @amount,
       :description => "TEST",
       :currency => 'usd'
