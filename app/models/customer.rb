@@ -8,12 +8,15 @@ class Customer < ActiveRecord::Base
 
   before_create :register_stripe_customer
 
+  validates_presence_of :stripe_id, :on => :save
+
   def register_stripe_customer
     email = self.email
 
-    Stripe::Customer.create(
+    customer = Stripe::Customer.create(
       :email => email
     )
+    self.stripe_id = customer.id
   end
 
 end
