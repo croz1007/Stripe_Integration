@@ -1,2 +1,40 @@
 <h1>Welcome!</h1>
 
+<p>Brunch put a bird on it plaid, readymade Carles butcher farm-to-table. Kitsch cardigan tattooed ugh stumptown heirloom. Disrupt 3 wolf moon gluten-free tattooed messenger bag, selvage try-hard jean shorts photo booth Godard. Post-ironic DIY cliche Godard, Blue Bottle health goth Wes Anderson farm-to-table. Post-ironic gentrify yr bitters. Migas squid whatever umami actually. Echo Park keytar Intelligentsia kogi cronut ugh.</p>
+
+<hr>
+
+<h3>Subscription Plans <%= " - Sign in to Subscribe!" unless customer_signed_in? %> </h3>
+<table id="plans" class="table table-bordered">
+  <thead>
+    <tr>
+      <%- @plans.each do |p| %>
+        <td><h4><%= p.name %></h4></td>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <%- @plans.each do |pl| %>
+        <td>
+          <p>Price: <%=  number_to_currency(pl.amount/100.0, format: "%u%n") %></p>
+          <% if customer_signed_in? %>
+            <%= form_tag charges_path do %>
+              <div class="sub_button">
+                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                      data-email="<%= current_customer.email %>"
+                      data-description="<%= pl.name %> Subscription"
+                      data-amount="<%= pl.amount %>"
+                      data-plan="<%= pl.id %>"
+                      data-label="Subscribe to <%= pl.name %>"
+                      data-locale="auto">
+                </script>
+              </div>
+            <% end %>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
