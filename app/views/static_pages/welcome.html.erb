@@ -19,7 +19,10 @@
         <td>
           <p>Price: <%=  number_to_currency(pl.amount/100.0, format: "%u%n") %></p>
           <% if customer_signed_in? %>
-            <%= form_tag charges_path do %>
+            <%= form_tag subscriptions_path do %>
+
+              <%= hidden_field_tag :plan_id, pl.id %>
+
               <div class="sub_button">
                 <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                       data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
