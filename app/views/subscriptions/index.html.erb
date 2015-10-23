@@ -1,3 +1,6 @@
+
+<h2>Subscriptions</h2>
+
 <%- if @customer.subscriptions %>
   <table class="table table-bordered">
     <thead>
@@ -21,4 +24,6 @@
       <% end %>
     </tbody>
   </table>
+<%- else -%>
+  You do not have any subscriptions. <%= link_to "Subscribe here!", root_path %>
 <% end %>
