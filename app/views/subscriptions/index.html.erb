@@ -1,6 +1,22 @@
-<% @customer.subscriptions.each do |s| %>
-  Start: <%= s.current_period_start %>
-  End: <%= s.current_period_end %>
-  Plan: <%#= @plans %> #TODO: show the plan info 
-  <br>
+<%- if @customer.subscriptions %>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Plan</td>
+        <td>Details</td>
+        <td>Start Date</td>
+        <td>End Date</td>
+      </td>
+    </thead>
+    <tbody>
+      <% @customer.subscriptions.each do |s| %>
+        <tr>
+          <td><%= s.plan.name %></td>
+          <td><%= s.plan.metadata.description %></td>
+          <td><%= DateTime.strptime(s.current_period_start.to_s, '%s').to_date %></td>
+          <td><%= DateTime.strptime(s.current_period_end.to_s, '%s').to_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
