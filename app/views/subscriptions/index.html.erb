@@ -2,7 +2,7 @@
 <h2>Subscriptions</h2>
 
 <%- if @customer.subscriptions.any? %>
-  <table class="table table-bordered">
+  <table id="tbl_subscription" class="table table-bordered">
     <thead>
       <tr>
         <td>Plan</td>
@@ -24,9 +24,9 @@
             <%- end -%>
             <%= DateTime.strptime(s.current_period_end.to_s, '%s').to_date %><br>
           </td>
-          <td><%= link_to "Cancel now", subscription_path(s.id), :method => :delete, :data => {:confirm => 'Are you sure?'} %><br>
+          <td><%= button_to "Cancel now", subscription_path(s.id), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn btn-primary" %><br>
             <%- unless s.cancel_at_period_end? -%>
-            <%= link_to "Cancel at end of cycle", subscription_path(s.id, :at_period_end => true), :method => :delete, :data => {:confirm => 'Are you sure?'} %>
+            <%= button_to "Cancel at end of cycle", subscription_path(s.id, :at_period_end => true), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn btn-primary" %>
             <%- end -%>
           </td>
         </tr>
