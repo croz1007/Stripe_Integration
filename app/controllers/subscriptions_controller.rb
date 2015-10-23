@@ -10,6 +10,8 @@ class SubscriptionsController < ApplicationController
 
   def create
     #this creates a card for the user
+    @plan = Stripe::Plan.retrieve(params[:plan_id])
+    @amount = @plan.amount
     @customer.sources.create(:source => params[:stripeToken])
 
     @customer.subscriptions.create(:plan => params[:plan_id])
@@ -17,7 +19,7 @@ class SubscriptionsController < ApplicationController
     flash[:error] = e.message
     redirect_to subscriptions_path
   end
-  
+
   protected
 
   def get_stripe_customer
@@ -28,5 +30,3 @@ class SubscriptionsController < ApplicationController
     @plans ||= Stripe::Plan.all
   end
 end
-
-
