@@ -1,6 +1,6 @@
 class SubscriptionsController < ApplicationController
 
-  before_filter :get_stripe_customer, :get_plans
+  before_filter :get_stripe_customer
 
   def index
   end
@@ -20,13 +20,19 @@ class SubscriptionsController < ApplicationController
     redirect_to subscriptions_path
   end
 
+  def destroy 
+    if @customer.subscriptions.retrieve(params[:id]).delete
+      redirect_to subscriptions_url, notice: 'Subscription was successfully canceled.' 
+    end
+  rescue Stripe::StripeError => e
+    flash[:error] = e.message
+    redirect_to subscriptions_path
+  end
+
   protected
 
   def get_stripe_customer
     @customer ||= Stripe::Customer.retrieve(current_customer.stripe_id)
   end
 
-  def get_plans
-    @plans ||= Stripe::Plan.all
-  end
 end
