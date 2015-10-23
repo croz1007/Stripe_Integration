@@ -5,38 +5,40 @@
 <hr>
 
 <h3>Subscription Plans <%= " - Sign in to Subscribe!" unless customer_signed_in? %> </h3>
-<table id="plans" class="table table-bordered">
-  <thead>
-    <tr>
-      <%- @plans.each do |p| %>
-        <td><h4><%= p.name %></h4></td>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <%- @plans.each do |pl| %>
-        <td>
-          <% if customer_signed_in? %>
-            <%= form_tag subscriptions_path do %>
-              <%= hidden_field_tag :plan_id, pl.id %>
-              <div class="sub_button">
-                <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                      data-email="<%= current_customer.email %>"
-                      data-description="<%= pl.name %> Subscription"
-                      data-amount="<%= pl.amount %>"
-                      data-plan="<%= pl.id %>"
-                      data-label="Subscribe to <%= pl.name %>"
-                      data-locale="auto">
-                </script>
-              </div>
+<div class="table-responsive">
+  <table id="plans" class="table table-bordered">
+    <thead>
+      <tr>
+        <%- @plans.each do |p| %>
+          <td><h4><%= p.name %></h4></td>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <%- @plans.each do |pl| %>
+          <td>
+            <% if customer_signed_in? %>
+              <%= form_tag subscriptions_path do %>
+                <%= hidden_field_tag :plan_id, pl.id %>
+                <div class="sub_button">
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                        data-email="<%= current_customer.email %>"
+                        data-description="<%= pl.name %> Subscription"
+                        data-amount="<%= pl.amount %>"
+                        data-plan="<%= pl.id %>"
+                        data-label="Subscribe to <%= pl.name %>"
+                        data-locale="auto">
+                  </script>
+                </div>
+              <% end %>
             <% end %>
-          <% end %>
-          <p><strong>Price:</strong> <%=  number_to_currency(pl.amount/100.0, format: "%u%n") %></p>
-          <p><strong>Description:</strong> <%= pl.metadata.description %></p>
-        </td>
-      <% end %>
-    </tr>
-  </tbody>
-</table>
+            <p><strong>Price:</strong> <%=  number_to_currency(pl.amount/100.0, format: "%u%n") %></p>
+            <p><strong>Description:</strong> <%= pl.metadata.description %></p>
+          </td>
+        <% end %>
+      </tr>
+    </tbody>
+  </table>
+</div>
