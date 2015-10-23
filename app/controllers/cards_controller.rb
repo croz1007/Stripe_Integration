@@ -17,6 +17,10 @@ class CardsController < ApplicationController
     redirect_to cards_url, :notice => "Needs implementation"
   end
 
+  def new
+    redirect_to cards_url, :notice => "Needs implementation"
+  end
+
   protected
 
   def get_stripe_customer
