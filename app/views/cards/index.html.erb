@@ -27,9 +27,11 @@
             Country: <%= c.address_country %>
           </td>
           <td>
-            <%= button_to "Delete Card", card_path(c.id), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn btn-primary" %>
+            <%= button_to "Delete Card", card_path(c.id), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn btn-danger" %>
             <%= button_to "Edit Card", edit_card_path(c.id), :method => :get, class: "btn btn-primary" %>
-            <%= button_to "Set as Default", card_path(c.id, :set_default => true), :method => :put, class: "btn btn-primary" %>
+            <%- if c.id != @customer.default_source -%>
+              <%= button_to "Set as Default", card_path(c.id, :set_default => true), :method => :put, class: "btn btn-success" %>
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -38,4 +40,3 @@
 <%- else -%>
   You do not have any cards. <%= link_to "Add a card", new_card_path %>
 <% end %>
-
