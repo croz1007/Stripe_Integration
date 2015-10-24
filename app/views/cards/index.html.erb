@@ -1,0 +1,41 @@
+
+<h2>Cards</h2>
+
+<%- if @cards.any? %>
+  <table id="tbl_cards" class="table table-bordered">
+    <thead>
+
+      <tr>
+        <td></td>
+        <td>Card Number</td>
+        <td>Expiration</td>
+        <td>Address</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cards.each do |c| %>
+        <tr>
+          <td><%- if c.id == @customer.default_source -%>DEFAULT<%- end -%></td>
+          <td>**** **** **** <%= c.last4 %></td>
+          <td><%= c.exp_month %>/<%= c.exp_year %></td>
+          <td>Address: <%= c.address_line1 %><br>
+            <%= c.address_line2 %><br>
+            City: <%= c.address_city %><br>
+            State: <%= c.address_state %><br>
+            Zip: <%= c.address_zip %><br>
+            Country: <%= c.address_country %>
+          </td>
+          <td>
+            <%= button_to "Delete Card", card_path(c.id), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn btn-primary" %>
+            <%= button_to "Edit Card", edit_card_path(c.id), :method => :get, class: "btn btn-primary" %>
+            <%= button_to "Set as Default", card_path(c.id, :set_default => true), :method => :put, class: "btn btn-primary" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%- else -%>
+  You do not have any cards. <%= link_to "Add a card", new_card_path %>
+<% end %>
+
