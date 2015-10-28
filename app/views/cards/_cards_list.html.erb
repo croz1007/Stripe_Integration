@@ -24,7 +24,7 @@
               Zip: <%= c.address_zip %><br>
               Country: <%= c.address_country %>
             </td>
-            <td>
+            <td class="button_td">
               <%= button_to "Delete Card", card_path(c.id), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn btn-danger" %>
               <%= button_to "Edit Card", edit_card_path(c.id), :method => :get, class: "btn btn-primary" %>
               <%- if c.id != @customer.default_source -%>
