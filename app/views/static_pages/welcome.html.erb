@@ -19,7 +19,7 @@
         <%- @plans.each do |pl| %>
           <td>
             <% if customer_signed_in? %>
-              <%= form_tag subscriptions_path do %>
+              <%= form_tag subscriptions_path, :class => 'subscription_form' do %>
                 <%= hidden_field_tag :plan_id, pl.id %>
                 <div class="sub_button">
                   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
@@ -34,8 +34,9 @@
                 </div>
               <% end %>
             <% end %>
-            <p><strong>Price:</strong> <%=  number_to_currency(pl.amount/100.0, format: "%u%n") %></p>
-            <p><strong>Description:</strong> <%= pl.metadata.description %></p>
+            <strong>Price:</strong> <%=  number_to_currency(pl.amount/100.0, format: "%u%n") %>
+            <br>
+            <strong>Description:</strong> <%= pl.metadata.description %>
           </td>
         <% end %>
       </tr>
