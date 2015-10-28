@@ -26,8 +26,18 @@
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to 'Home', root_path %></li>
             <% if customer_signed_in? %>
-              <li><a href="#">Signed in as: <%= current_customer.email %></a></li>
-              <li><%= link_to "Logout", destroy_customer_session_path, :method => :delete %></li>
+
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#">Signed in as: <%= current_customer.email %></a></li>
+                  <!-- <li><a href="#">Profile</a></li> -->
+                  <li><%= link_to "Subscriptions", subscriptions_path %></li>
+                  <li><%= link_to "Payment Methods", cards_path %></li>
+                  <li><%= link_to "Logout", destroy_customer_session_path, :method => :delete %></li>
+                </ul>
+              </li>
+
             <% else %>
               <li><%= link_to "Login", new_customer_session_path %></li>
               <li><%= link_to "Sign up!", new_customer_registration_path %></li>
