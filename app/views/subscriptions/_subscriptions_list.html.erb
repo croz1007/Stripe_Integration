@@ -1,0 +1,35 @@
+<%- if @customer.subscriptions.any? %>
+  <table id="tbl_subscription" class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Plan</td>
+        <td>Details</td>
+        <td>Start Date</td>
+        <td>End Date</td>
+        <td></td>
+      </td>
+    </thead>
+    <tbody>
+      <% @customer.subscriptions.each do |s| %>
+        <tr>
+          <td><%= s.plan.name %></td>
+          <td><%= s.plan.metadata.description %></td>
+          <td><%= DateTime.strptime(s.current_period_start.to_s, '%s').to_date %></td>
+          <td>
+            <%- if s.cancel_at_period_end? -%>
+              Subscription will be canceled on:
+            <%- end -%>
+            <%= DateTime.strptime(s.current_period_end.to_s, '%s').to_date %><br>
+          </td>
+          <td><%= button_to "Cancel now", subscription_path(s.id), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn btn-primary" %><br>
+            <%- unless s.cancel_at_period_end? -%>
+            <%= button_to "Cancel at end of cycle", subscription_path(s.id, :at_period_end => true), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn btn-primary" %>
+            <%- end -%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%- else -%>
+  You do not have any subscriptions. <%= link_to "Subscribe here!", root_path %>
+<% end %>
