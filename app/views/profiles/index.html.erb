@@ -1,0 +1,18 @@
+<h2>User Profile</h2>
+<hr>
+<div id="customer_details">
+  <p><strong>Email: </strong><%= @customer.email %></p>
+  <p><strong>Customer since: </strong><%= DateTime.strptime(@customer.created.to_s, '%s').to_date %></p>
+</div>
+
+<div id="customer_cards">
+  <h3>Cards</h3>
+  <hr>
+  <%= render partial: "cards/cards_list" %>
+</div>
+
+<div id="customer_subscriptions">
+  <h3>Subscriptions</h3>
+  <hr>
+  <%= render partial: "subscriptions/subscriptions_list" %>
+</div>
