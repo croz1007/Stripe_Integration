@@ -17,7 +17,9 @@
             <td><%- if c.id == @customer.default_source -%>DEFAULT<%- end -%></td>
             <td>**** **** **** <%= c.last4 %></td>
             <td><%= c.exp_month %>/<%= c.exp_year %></td>
-            <td>Address: <%= c.address_line1 %><br>
+            <td>
+              Name: <%= c.name %><br>
+              Address: <%= c.address_line1 %><br>
               <%= c.address_line2 %><br>
               City: <%= c.address_city %><br>
               State: <%= c.address_state %><br>

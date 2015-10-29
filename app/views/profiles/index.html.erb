@@ -1,7 +1,11 @@
 <h2>User Profile</h2>
 <hr>
-<p><strong>Email: </strong><%= @customer.email %></p>
-<p><strong>Customer since: </strong><%= DateTime.strptime(@customer.created.to_s, '%s').to_date %></p>
+<div id="customer_details">
+  <p><strong>Email: </strong><%= @customer.email %></p>
+  <p><strong>Customer since: </strong><%= DateTime.strptime(@customer.created.to_s, '%s').to_date %></p>
+  <p><strong>Currency:</strong> <%= @customer.currency.upcase %></p>
+  <p><strong>Account Balance:</strong> $ <%=  number_to_currency(@customer.account_balance/100.0, format: "%u%n") %></p>
+</div>
 
 <h3>Cards</h3>
 <hr>
