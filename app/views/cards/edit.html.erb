@@ -1,0 +1,17 @@
+<h2>Edit Card Details</h2>
+
+<h4>Card: **** **** **** <%= @card.last4 %></h4>
+<hr>
+<%= form_tag("/cards/#{@card.id}", method: "put") do |f| %>
+  <p>Name on Card: <%= text_field_tag(:name, @card.name) %></p>
+  <p>Address 1: <%= text_field_tag(:address_line1, @card.address_line1) %></p>
+  <p>Address 2: <%= text_field_tag(:address_line2, @card.address_line2) %></p>
+  <p>City: <%= text_field_tag(:address_city, @card.address_city) %></p>
+  <p>State: <%= text_field_tag(:address_state, @card.address_state) %></p>
+  <p>ZIP: <%= text_field_tag(:address_zip, @card.address_zip) %></p>
+  <p>Country: <%= text_field_tag(:address_country, @card.address_country) %></p>
+  <p>Expiration Month: <%= text_field_tag(:exp_month, @card.exp_month) %></p>
+  <p>Expiration Year: <%= text_field_tag(:exp_year, @card.exp_year) %></p>
+  <%= submit_tag("Update") %>
+
+<% end %>

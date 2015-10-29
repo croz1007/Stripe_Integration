@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 
 class CardsController < ApplicationController
   before_filter :get_stripe_customer
@@ -55,9 +55,9 @@ class CardsController < ApplicationController
   end
 
   def delete
-    binding.pry
-    @customer.sources.retrieve(params[:id]).delete
-    redirect_to profiles_url, :notice => "Card Deleted"
+    # binding.pry
+    # @customer.sources.retrieve(params[:id]).delete
+    # redirect_to profiles_url, :notice => "Card Deleted"
   end
 
   protected
