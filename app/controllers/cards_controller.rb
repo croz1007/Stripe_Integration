@@ -8,7 +8,8 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    redirect_to cards_url, :notice => "Needs implementation"
+    @customer.sources.retrieve(params[:id]).delete
+    redirect_to cards_url, :notice => "Card Deleted"
   end
 
   def edit
@@ -51,13 +52,7 @@ class CardsController < ApplicationController
   end
 
   def new
-    redirect_to cards_url, :notice => "Needs implementation"
-  end
-
-  def delete
-    # binding.pry
-    # @customer.sources.retrieve(params[:id]).delete
-    # redirect_to profiles_url, :notice => "Card Deleted"
+    
   end
 
   protected

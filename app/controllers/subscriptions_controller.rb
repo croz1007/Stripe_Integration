@@ -20,7 +20,6 @@ class SubscriptionsController < ApplicationController
     @plan = Stripe::Plan.retrieve(params[:plan_id])
     @amount = @plan.amount
     @source = @customer.sources.retrieve(params[:source_id])
-    # @customer.sources.create(:source => params[:stripeToken])
 
     @customer.subscriptions.create(:plan => @plan.id)
   rescue Stripe::CardError => e
