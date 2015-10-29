@@ -4,6 +4,7 @@
 
 <%= form_tag("/subscriptions", method: "post") do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
-  <p>Card to use: <%= select_tag(:source_id, options_from_collection_for_select(@sources, 'id', 'name')) %></p>
-  <%= submit_tag %>
+  <p>Only the default card will work for now</p>
+  <!-- <p>Card to use: <%= select_tag(:source_id, options_from_collection_for_select(@sources, 'id', 'name')) %></p> -->
+  <%= submit_tag "Subscribe to #{@plan.name} plan" %>
 <% end %>

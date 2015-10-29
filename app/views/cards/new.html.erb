@@ -1,2 +1,16 @@
 <h2>Add a New Card</h2>
 <h3><%= @customer.id %></h3>
+<hr>
+<%= form_tag("/cards", method: "post", class: "form") do |f| %>
+  <p>Name on Card: <%= text_field_tag(:name) %></p>
+  <p>Address 1: <%= text_field_tag(:address_line1) %></p>
+  <p>Address 2: <%= text_field_tag(:address_line2) %></p>
+  <p>City: <%= text_field_tag(:address_city) %></p>
+  <p>State: <%= text_field_tag(:address_state) %></p>
+  <p>ZIP: <%= text_field_tag(:address_zip) %></p>
+  <p>Country: <%= text_field_tag(:address_country) %></p>
+  <p>Expiration Month: <%= text_field_tag(:exp_month) %></p>
+  <p>Expiration Year: <%= text_field_tag(:exp_year) %></p>
+  <%= submit_tag("Add New Card") %>
+
+<% end %>

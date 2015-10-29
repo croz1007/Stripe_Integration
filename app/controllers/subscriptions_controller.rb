@@ -12,15 +12,13 @@ class SubscriptionsController < ApplicationController
   def new
     @plan = Stripe::Plan.retrieve(params[:plan_id])
     @sources = @customer.sources.all
-    # redirect_to subscriptions_url, notice: "New Subscription for #{@plan.id}."
   end
 
   def create
-    #this creates a card for the user
+    # Need to work on subscribing with any saved card chosen by customer
     @plan = Stripe::Plan.retrieve(params[:plan_id])
     @amount = @plan.amount
     @source = @customer.sources.retrieve(params[:source_id])
-
     @customer.subscriptions.create(:plan => @plan.id)
   rescue Stripe::CardError => e
     flash[:error] = e.message
