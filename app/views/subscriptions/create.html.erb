@@ -1,4 +1,4 @@
 <h2>Thank you for subscribing!</h2>
-<p>You card will be charged <strong> <%= centsToDollars(@amount) %></strong> for a <%= @plan.name %> Subscription.</p>
+<p>You card will be charged $<strong> <%= centsToDollars(@amount) %></strong> every <%= @plan.interval %> for a <%= @plan.name %> Subscription.</p>
 
 <%= link_to "View your subscriptions", subscriptions_path %>
