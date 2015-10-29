@@ -1,3 +1,4 @@
+require 'pry'
 class SubscriptionsController < ApplicationController
 
   before_filter :get_stripe_customer
@@ -8,24 +9,31 @@ class SubscriptionsController < ApplicationController
   def show
   end
 
+  def new
+    @plan = Stripe::Plan.retrieve(params[:plan_id])
+    @sources = @customer.sources.all
+    # redirect_to subscriptions_url, notice: "New Subscription for #{@plan.id}."
+  end
+
   def create
     #this creates a card for the user
     @plan = Stripe::Plan.retrieve(params[:plan_id])
     @amount = @plan.amount
-    @customer.sources.create(:source => params[:stripeToken])
+    @source = @customer.sources.retrieve(params[:source_id])
+    # @customer.sources.create(:source => params[:stripeToken])
 
-    @customer.subscriptions.create(:plan => params[:plan_id])
+    @customer.subscriptions.create(:plan => @plan.id)
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to subscriptions_path
   end
 
-  def destroy 
+  def destroy
     opts = {}
     opts = {:at_period_end => true} if params[:at_period_end]
 
     if @customer.subscriptions.retrieve(params[:id]).delete(opts)
-      redirect_to subscriptions_url, notice: 'Subscription was successfully canceled.' 
+      redirect_to subscriptions_url, notice: 'Subscription was successfully canceled.'
     end
   rescue Stripe::StripeError => e
     flash[:error] = e.message
