@@ -1,5 +1,3 @@
-require 'pry'
-
 class CardsController < ApplicationController
   before_filter :get_stripe_customer
 
