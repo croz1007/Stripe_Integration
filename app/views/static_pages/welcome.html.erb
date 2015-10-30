@@ -5,30 +5,16 @@
 <hr>
 
 <h3>Subscription Plans <%= " - Sign in to Subscribe!" unless customer_signed_in? %> </h3>
-<div class="table-responsive">
-  <table id="plans" class="table table-bordered">
-    <thead>
-      <tr>
-        <%- @plans.each do |p| %>
-          <td><h4><%= p.name %></h4></td>
-        <% end %>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <%- @plans.each do |pl| %>
-          <td>
-            <% if customer_signed_in? %>
-              <div class="btn_container">
-                <%= link_to "Subscribe to #{pl.name}", new_subscription_path(:plan_id => pl.id), :method => :get, class: "btn btn-primary" %>
-              </div>
-            <% end %>
-            <strong>Price:</strong> <%=  number_to_currency(pl.amount/100.0, format: "%u%n") %>
-            <br>
-            <strong>Description:</strong> <%= pl.metadata.description %>
-          </td>
-        <% end %>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<%- @plans.each do |p| %>
+  <div class="one-third">
+    <h4><%= p.name %></h4>
+    <% if customer_signed_in? %>
+      <div class="btn_container">
+        <%= link_to "Subscribe to #{p.name}", new_subscription_path(:plan_id => p.id), :method => :get, class: "btn green" %>
+      </div>
+    <% end %>
+    <strong>Price:</strong> <%=  number_to_currency(p.amount/100.0, format: "%u%n") %>
+    <br>
+    <strong>Description:</strong> <%= p.metadata.description %>
+  </div>
+<% end %>

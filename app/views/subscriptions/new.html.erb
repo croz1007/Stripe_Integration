@@ -2,7 +2,7 @@
 
 <p>You will be subscribing to the <strong><%= @plan.name %></strong> plan.</p>
 
-<%= form_tag("/subscriptions", method: "post") do |f| %>
+<%= form_tag("/subscriptions", method: "post", class: "form-group") do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
   <p>Only the default card will work for now</p>
   <!-- <p>Card to use: <%= select_tag(:source_id, options_from_collection_for_select(@sources, 'id', 'name')) %></p> -->

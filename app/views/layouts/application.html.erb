@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <title>Stripe Integration<%= @title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,53 +9,54 @@
     <%= csrf_meta_tags %>
   </head>
   <body>
-    <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <%= link_to 'Stripe Integration', root_path, :class => "navbar-brand"  %>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to 'Home', root_path %></li>
-            <% if customer_signed_in? %>
+    <div class="container">
+      <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <%= link_to 'Stripe Integration', root_path, :class => "navbar-brand"  %>
+          </div>
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li><%= link_to 'Home', root_path %></li>
+              <% if customer_signed_in? %>
 
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                  <!-- <li><a href="#">Signed in as: <%= current_customer.email %></a></li> -->
-                  <li><%= link_to "Manage Profile", profiles_path %></li>
-                  <li><%= link_to "Subscriptions", subscriptions_path %></li>
-                  <li><%= link_to "Payment Methods", cards_path %></li>
-                  <li><%= link_to "Logout", destroy_customer_session_path, :method => :delete %></li>
-                </ul>
-              </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Profile<span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><%= link_to "Manage Profile", profiles_path %></li>
+                    <li><%= link_to "Subscriptions", subscriptions_path %></li>
+                    <li><%= link_to "Payment Methods", cards_path %></li>
+                    <li><%= link_to "Logout", destroy_customer_session_path, :method => :delete %></li>
+                  </ul>
+                </li>
 
-            <% else %>
-              <li><%= link_to "Login", new_customer_session_path %></li>
-              <li><%= link_to "Sign up!", new_customer_registration_path %></li>
-            <% end %>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-    <div id="main-container" class="container-fluid">
-      <%- if notice.present? %>
-        <p class="notice"><%= notice %></p>
-      <% end %>
-      <%- if alert.present? %>
-        <p class="alert"><%= alert %></p>
-      <% end %>
+              <% else %>
+                <li><%= link_to "Login", new_customer_session_path %></li>
+                <li><%= link_to "Sign up!", new_customer_registration_path %></li>
+              <% end %>
+            </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <div id="main-container" class="container-fluid">
+        <%- if notice.present? %>
+          <p class="notice"><%= notice %></p>
+        <% end %>
+        <%- if alert.present? %>
+          <p class="alert"><%= alert %></p>
+        <% end %>
 
-      <%= yield %>
+        <%= yield %>
 
+      </div>
     </div>
   </body>
 </html>
