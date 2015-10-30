@@ -10,88 +10,82 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
-app/assets/stylesheets/application.scss
+// app/assets/stylesheets/application.css.sass
  *= require_tree .
  *= require_self
  */
+@import "bootstrap-sprockets"
+@import "bootstrap"
 
-@import "bower_components/style-guide/src/scss/style-guide.scss";
-@import "style-guide/src/scss/style-guide.scss";
+body
+  background: #CCC
 
-body {
-  background: #CCC;
-}
-h1, h2, h3, h4, h5 {
-  margin: 5px 0;
-}
-#new_customer, .form {
-  width: 50%;
-  min-width: 300px;
-  max-width: 400px;
-  margin: 5px auto 15px;
-  background: white;
-  border: 2px solid #555;
-  border-radius: 10px;
-  box-shadow: 5px 5px 10px 0px rgba(0,0,0, .25);
-  text-align: left;
-  padding: 25px 30px;
-  vertical-align: top;
-}
-input {
-  margin: 5px 0;
-  padding: 5px;
-  width: 95%;
-}
-table {
-  border-radius: 7px;
-  border: none;
+h1, h2, h3, h4, h5
+  margin: 5px 0
 
-  thead tr td {
-    text-align: center;
-    background: black;
-    color: white;
-  }
-  tbody tr td {
-    background: white;
-    white-space: normal;
+#new_customer, .form
+  width: 50%
+  min-width: 300px
+  max-width: 400px
+  margin: 5px auto 15px
+  background: white
+  border: 2px solid #555
+  border-radius: 10px
+  box-shadow: 5px 5px 10px 0px rgba(0,0,0, .25)
+  text-align: left
+  padding: 25px 30px
+  vertical-align: top
 
-    form {
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      padding: 0;
-    }
-    .sub_button {
-      text-align: center;
-      margin: 0;
-    }
-  }
-}
-.stripe-button {
-  margin: 0;
-  padding: 0;
-}
-#plans {
-  td {
-    width: 33%;
+input
+  margin: 5px 0
+  padding: 5px
+  width: 95%
 
-    .btn_container {
-      text-align: center;
-      margin-bottom: 10px;
-    }
-  }
-}
-#tbl_subscription {
-  .button_to {
-    display: inline;
+table
+  border-radius: 7px
+  border: none
 
-    .btn {
-      font-size: 11px;
-      text-align: center;
-      margin: 5px auto;
-    }
-  }
-}
-.button_td {
-  width: 20%;
-}
+  thead tr td
+    text-align: center
+    background: black
+    color: white
+
+  tbody tr td
+    background: white
+    white-space: normal
+
+    form
+      border: none
+      border-radius: 0
+      box-shadow: none
+      padding: 0
+
+    .sub_button
+      text-align: center
+      margin: 0
+
+.stripe-button
+  margin: 0
+  padding: 0
+
+#plans
+
+  td
+    width: 33%
+
+    .btn_container
+      text-align: center
+      margin-bottom: 10px
+
+#tbl_subscription
+
+  .button_to
+    display: inline
+
+    .btn
+      font-size: 11px
+      text-align: center
+      margin: 5px auto
+
+.button_td
+  width: 20%
