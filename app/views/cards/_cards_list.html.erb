@@ -2,7 +2,6 @@
   <div class="table-responsive">
     <table id="tbl_cards" class="table table-bordered">
       <thead>
-
         <tr>
           <td></td>
           <td>Card Number</td>
@@ -20,7 +19,9 @@
             <td>
               Name: <%= c.name %><br>
               Address: <%= c.address_line1 %><br>
-              <%= c.address_line2 %><br>
+              <%- if !c.address_line2.nil? || c.address_line2.strip.length != 0 %>
+                <%= c.address_line2 %><br>
+              <% end %>
               City: <%= c.address_city %><br>
               State: <%= c.address_state %><br>
               Zip: <%= c.address_zip %><br>

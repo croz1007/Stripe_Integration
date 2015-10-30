@@ -7,11 +7,13 @@
   <p><strong>Account Balance:</strong> $ <%=  number_to_currency(@customer.account_balance/100.0, format: "%u%n") %></p>
 </div>
 
+<br>
 <h3>Cards</h3>
 <hr>
 <%= render partial: "cards/cards_creator", locals: {customer: @customer} %>
 <%= render partial: "cards/cards_list" %>
 
+<br>
 <h3>Subscriptions</h3>
 <hr>
 <%= render partial: "subscriptions/subscriptions_list" %>
