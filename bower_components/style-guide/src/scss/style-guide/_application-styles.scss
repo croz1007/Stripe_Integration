@@ -1,0 +1,183 @@
+.no-bullets {
+  list-style-type: none;
+  margin-left: 0;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.centered {
+  text-align: center;
+}
+
+// CONTAINER AND GRID
+
+.container {
+  max-width: 980px;
+  width: 100%;
+  margin: auto;
+}
+
+.row {
+  @include row;
+}
+
+
+.one-fifth {
+  @include span-columns(2);
+}
+
+.four-fifths {
+  @include span-columns(10);
+  @include omega();
+}
+
+.one-fourth {
+  @include span-columns(3);
+}
+
+.three-fourths {
+  @include span-columns(9);
+  @include omega();
+}
+
+.one-third {
+  @include span-columns(4);
+}
+
+.two-thirds {
+  @include span-columns(8);
+  @include omega();
+}
+
+.one-half {
+  @include span-columns(6);
+}
+
+// END CONTAINER AND GRID
+
+
+// BUTTONS
+//
+
+@mixin button($color) {
+  display: inline-block;
+  background: $color;
+  padding: 10px 20px;
+  margin: 10px;
+  border-radius: 15px;
+  border: none;
+  color: $white;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: $base-font-family;
+  line-height: $base-line-height;
+  font-weight: 100;
+  text-align: center;
+  outline: none;
+  @include transition(background .2s);
+
+  &:hover {
+    text-decoration: none;
+    color: white;
+    background: darken($color, 5%);
+    @include transition(background .2s);
+  }
+
+  &:active {
+    background: darken($color, 10%);
+    @include transition(background 0s);
+  }
+}
+
+.btn {
+  &.default {
+    @include button($blue);
+  }
+
+  &.disabled {
+    @include button($light-grey);
+    pointer-events: none;
+    color: $grey;
+    cursor: default;
+    &:hover {
+      color: $grey;
+      background: $light-grey;
+    }
+  }
+
+  &.orange {
+    @include button($orange);
+  }
+
+  &.purple {
+    @include button($purple);
+  }
+
+  &.green {
+    @include button($green);
+  }
+
+  &.red {
+    @include button($red);
+  }
+
+  &.large {
+    padding: 20px 40px;
+  }
+
+  &.small {
+    padding: 5px 15px;
+  }
+}
+
+// END BUTTONS
+
+// FORMS & INPUTS
+
+.form-group {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto 20px;
+  font-size: $font-size-small;
+  color: $blue;
+
+  label {
+    display: block;
+    font-size: $font-size-small;
+    padding: 0 20px;
+    color: $blue;
+  }
+
+  input {
+    display: block;
+    height: 40px;
+    width: 100%;
+    border: none;
+    border: 2px solid $purple;
+    background: $white;
+    outline: none;
+    font-size: 16px;
+    padding: 0 20px;
+    @include transition(border, .3s);
+
+    &:focus {
+      border-color: $blue;
+      @include transition(border, .3s);
+      height: 70px;
+    }
+
+  }
+
+  input[type=radio],
+  input[type=checkbox] {
+    height: auto;
+    width: auto;
+    display: inline;
+  }
+}

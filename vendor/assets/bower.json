@@ -1,0 +1,6 @@
+{
+  "name": "dsl-generated dependencies",
+  "dependencies": {
+    "style-guide": "https://github.com/wtfluckey/style-guide"
+  }
+}
