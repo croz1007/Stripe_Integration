@@ -1,4 +1,4 @@
-require 'pry'
+# require 'pry'
 class SubscriptionsController < ApplicationController
 
   before_filter :get_stripe_customer
