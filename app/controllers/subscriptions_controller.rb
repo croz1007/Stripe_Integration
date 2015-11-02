@@ -7,6 +7,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def show
+    @subscription = @customer.subscriptions.retrieve(params[:id])
   end
 
   def new
