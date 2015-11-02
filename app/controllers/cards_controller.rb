@@ -1,3 +1,4 @@
+# require 'pry'
 class CardsController < ApplicationController
   before_filter :get_stripe_customer
 
@@ -24,31 +25,23 @@ class CardsController < ApplicationController
       @card = @customer.sources.retrieve(params[:id])
       update_card_details
     end
-    # @card.address_city = params[:address_city] unless params[:address_city].blank?
-    # @card.address_country = params[:address_country] unless params[:address_country].blank?
-    # @card.address_line1 = params[:address_line1] unless params[:address_line1].blank?
-    # if !params[:address_line2].blank?
-    #   @card.address_line2 = params[:address_line2]
-    # else
-    #   @card.address_line2 = " "
-    # end
-    # @card.address_state = params[:address_state] unless params[:address_state].blank?
-    # @card.address_zip = params[:address_zip] unless params[:address_zip].blank?
-    # @card.exp_month = params[:exp_month]unless params[:exp_month].blank?
-    # @card.exp_year = params[:exp_year] unless params[:exp_year].blank?
-    # @card.name = params[:name] unless params[:name].blank?
-    # @card.save
-    # sendToProfile("Card Updated")
   end
 
   def new
-
+    @no_card = params[:no_card_yet]
+    @plan = params[:plan]
   end
 
   def create
     @token = params[:token]
-    @customer.sources.create(:source => @token)
-    sendToProfile("New Card Added")
+    @source = @customer.sources.create(:source => @token)
+    if params[:no_card]
+      @customer.default_source = @source.id
+      @customer.save
+      redirect_to new_subscription_path(:plan_id => params[:plan_id])
+    else
+      sendToProfile("New Card Added")
+    end
   end
 
   protected

@@ -1,3 +1,4 @@
+# require 'pry'
 class ProfilesController < ApplicationController
 
   before_filter :get_stripe_customer

@@ -13,14 +13,19 @@ class SubscriptionsController < ApplicationController
   def new
     @plan = Stripe::Plan.retrieve(params[:plan_id])
     @sources = @customer.sources.all
+    if @sources.data.count <= 0
+      redirect_to new_card_path(:no_card_yet => "true", :plan => @plan.id)
+    end
   end
 
   def create
-    # Need to work on subscribing with any saved card chosen by customer
     @plan = Stripe::Plan.retrieve(params[:plan_id])
     @amount = @plan.amount
-    @source = @customer.sources.retrieve(params[:source_id])
-    @customer.subscriptions.create(:plan => @plan.id)
+    if @customer.default_source.nil?
+      redirect_to new_card_path(:no_card_yet => "true")
+    else
+      @customer.subscriptions.create(:plan => @plan.id)
+    end
   rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to subscriptions_path

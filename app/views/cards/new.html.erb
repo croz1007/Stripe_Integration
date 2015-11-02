@@ -13,7 +13,10 @@
   <p>State: <%= text_field_tag(:address_state) %></p>
   <p>ZIP: <%= text_field_tag(:address_zip) %></p>
   <p>Country: <%= text_field_tag(:address_country) %></p>
+  <!-- <p>Currency: <%= text_field_tag(:currency) %></p> -->
   <%= hidden_field_tag :token %>
+  <%= hidden_field_tag :no_card, @no_card %>
+  <%= hidden_field_tag :plan_id, @plan %>
   <input type="button" class="btn green" id="btn_new_card" value="Add New Card"/>
 
 <% end %>
