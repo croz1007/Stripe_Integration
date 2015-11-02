@@ -1,44 +1,48 @@
 <%- if @cards.any? %>
-  <div class="table-responsive">
-    <table id="tbl_cards" class="table table-bordered">
-      <thead>
+  <table id="tbl_cards" class="tables">
+    <thead>
+      <tr>
+        <td></td>
+        <td>Card Number</td>
+        <td>Expiration</td>
+        <td>Address</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cards.each do |c| %>
         <tr>
-          <td></td>
-          <td>Card Number</td>
-          <td>Expiration</td>
-          <td>Address</td>
-          <td></td>
+          <td><%- if c.id == @customer.default_source -%>DEFAULT<%- end -%></td>
+          <td>**** **** **** <%= c.last4 %></td>
+          <td>
+            <%- if c.exp_month.to_s.length < 2 %>
+              0<%= c.exp_month %>/<%= c.exp_year %>
+            <%- else %>
+              <%= c.exp_month %>/<%= c.exp_year %>
+            <% end %>
+          </td>
+          <td>
+            <strong>Name:</strong> <%= c.name %><br>
+            <strong>Address:</strong> <%= c.address_line1 %><br>
+            <%- if !c.address_line2.nil? %>
+              <%= c.address_line2 %><br>
+            <% end %>
+            <strong>City:</strong> <%= c.address_city %><br>
+            <strong>State:</strong> <%= c.address_state %><br>
+            <strong>Zip:</strong> <%= c.address_zip %><br>
+            <strong>Country:</strong> <%= c.address_country %>
+          </td>
+          <td class="button_td">
+            <%= button_to "Delete Card", card_path(c.id), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn red" %>
+            <%= button_to "Edit Card", edit_card_path(c.id), :method => :get, class: "btn green" %>
+            <%- if c.id != @customer.default_source -%>
+              <%= button_to "Set as Default", card_path(c.id, :set_default => true), :method => :put, class: "btn orange" %>
+            <% end %>
+          </td>
         </tr>
-      </thead>
-      <tbody>
-        <% @cards.each do |c| %>
-          <tr>
-            <td><%- if c.id == @customer.default_source -%>DEFAULT<%- end -%></td>
-            <td>**** **** **** <%= c.last4 %></td>
-            <td><%= c.exp_month %>/<%= c.exp_year %></td>
-            <td>
-              Name: <%= c.name %><br>
-              Address: <%= c.address_line1 %><br>
-              <%- if !c.address_line2.nil? || c.address_line2.strip.length != 0 %>
-                <%= c.address_line2 %><br>
-              <% end %>
-              City: <%= c.address_city %><br>
-              State: <%= c.address_state %><br>
-              Zip: <%= c.address_zip %><br>
-              Country: <%= c.address_country %>
-            </td>
-            <td class="button_td">
-              <%= button_to "Delete Card", card_path(c.id), :method => :delete, :data => {:confirm => 'Are you sure?'}, class: "btn red" %>
-              <%= button_to "Edit Card", edit_card_path(c.id), :method => :get, class: "btn green" %>
-              <%- if c.id != @customer.default_source -%>
-                <%= button_to "Set as Default", card_path(c.id, :set_default => true), :method => :put, class: "btn orange" %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+      <% end %>
+    </tbody>
+  </table>
 <%- else -%>
   You do not have any cards. <%= link_to "Add a card", new_card_path %>
 <% end %>
