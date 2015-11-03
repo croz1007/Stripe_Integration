@@ -5,16 +5,22 @@
 <hr>
 
 <h3>Subscription Plans <%= " - Sign in to Subscribe!" unless customer_signed_in? %> </h3>
+<div class="cards">
 <%- @plans.each do |p| %>
-  <div class="one-third">
-    <h4><%= p.name %></h4>
+  <div class="card one-third">
+    <!-- <div class="card-image"> -->
+    <div class="card-header">
+      <h4><%= p.name %></h4>
+    </div>
+    <div class="card-copy">
     <% if customer_signed_in? %>
-      <div class="btn_container">
+      <!-- <div class="card-header"> -->
         <%= link_to "Subscribe to #{p.name}", new_subscription_path(:plan_id => p.id), :method => :get, class: "btn green" %>
-      </div>
+      <!-- </div> -->
     <% end %>
-    <strong>Price:</strong> <%=  number_to_currency(p.amount/100.0, format: "%u%n") %>
-    <br>
-    <strong>Description:</strong> <%= p.metadata.description %>
+     <!-- <div class="card-copy"> -->
+      <div><strong>Price:</strong> <%=  number_to_currency(p.amount/100.0, format: "%u%n") %></div>
+      <div><strong>Description:</strong> <%= p.metadata.description %></div>
+    </div>
   </div>
 <% end %>
