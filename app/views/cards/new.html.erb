@@ -1,22 +1,21 @@
 <h2>Add a New Card</h2>
-<h3><%= @customer.id %></h3>
 <hr>
-<%= form_tag("/cards", method: "post", id: "form_new_card", class: "form-group") do |f| %>
-  <p>Name on Card: <%= text_field_tag(:name) %></p>
-  <p>Card Number: <%= text_field_tag(:number) %></p>
-  <p>CVV/CVC: <%= text_field_tag(:cvc) %></p>
-  <p>Month: <%= text_field_tag(:exp_month) %></p>
-  <p>Year: <%= text_field_tag(:exp_year) %></p>
-  <p>Address 1: <%= text_field_tag(:address_line1) %></p>
-  <p>Address 2: <%= text_field_tag(:address_line2) %></p>
-  <p>City: <%= text_field_tag(:address_city) %></p>
-  <p>State: <%= text_field_tag(:address_state) %></p>
-  <p>ZIP: <%= text_field_tag(:address_zip) %></p>
-  <p>Country: <%= text_field_tag(:address_country) %></p>
-  <!-- <p>Currency: <%= text_field_tag(:currency) %></p> -->
-  <%= hidden_field_tag :token %>
-  <%= hidden_field_tag :no_card, @no_card %>
-  <%= hidden_field_tag :plan_id, @plan %>
-  <input type="button" class="btn green" id="btn_new_card" value="Add New Card"/>
-
-<% end %>
+<div>
+  <%= form_tag("/cards", method: "post", id: "form_new_card", class: "form-group") do |f| %>
+    <p>Name on Card: <%= text_field_tag(:name) %></p>
+    <p>Card Number: <%= text_field_tag(:number) %></p>
+    <p>CVV/CVC: <%= text_field_tag(:cvc) %></p>
+    <p>Month: <%= text_field_tag(:exp_month) %></p>
+    <p>Year: <%= text_field_tag(:exp_year) %></p>
+    <p>Address 1: <%= text_field_tag(:address_line1) %></p>
+    <p>Address 2: <%= text_field_tag(:address_line2) %></p>
+    <p>City: <%= text_field_tag(:address_city) %></p>
+    <p>State: <%= text_field_tag(:address_state) %></p>
+    <p>ZIP: <%= text_field_tag(:address_zip) %></p>
+    <p>Country: <%= text_field_tag(:address_country) %></p>
+    <%= hidden_field_tag :token %>
+    <%= hidden_field_tag :no_card, @no_card %>
+    <%= hidden_field_tag :plan_id, @plan %>
+    <input type="button" class="btn green" id="btn_new_card" value="Add New Card"/>
+  <% end %>
+</div>

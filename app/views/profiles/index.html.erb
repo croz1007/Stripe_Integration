@@ -8,10 +8,14 @@
 </div>
 
 <br>
-<h3>Cards</h3>
-<%= render partial: "cards/cards_creator", locals: {customer: @customer} %>
-<%= render partial: "cards/cards_list" %>
+<div id="card_details">
+  <h3>Cards</h3>
+  <%= render partial: "cards/cards_creator", locals: {customer: @customer} %>
+  <%= render partial: "cards/cards_list" %>
+</div>
 
 <br>
-<h3>Subscriptions</h3>
-<%= render partial: "subscriptions/subscriptions_list" %>
+<div id="subscription_details">
+  <h3>Subscriptions</h3>
+  <%= render partial: "subscriptions/subscriptions_list" %>
+</div>

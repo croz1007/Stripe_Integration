@@ -1,4 +1,4 @@
-# require 'pry'
+require 'pry'
 class CardsController < ApplicationController
   before_filter :get_stripe_customer
 
@@ -28,17 +28,15 @@ class CardsController < ApplicationController
   end
 
   def new
-    @no_card = params[:no_card_yet]
-    @plan = params[:plan]
+    @no_card = params[:no_card_yet] unless nil
+    @plan = params[:plan] unless nil
   end
 
   def create
     @token = params[:token]
     @source = @customer.sources.create(:source => @token)
-    if params[:no_card]
-      @customer.default_source = @source.id
-      @customer.save
-      redirect_to new_subscription_path(:plan_id => params[:plan_id])
+    if !params[:no_card].blank?
+      redirect_to new_subscription_path(:plan_id => params[:plan_id]) unless params[:plan_id].blank?
     else
       sendToProfile("New Card Added")
     end
