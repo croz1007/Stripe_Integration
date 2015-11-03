@@ -1,16 +1,15 @@
 <h1>Welcome!</h1>
-
+<div>
 <p>Brunch put a bird on it plaid, readymade Carles butcher farm-to-table. Kitsch cardigan tattooed ugh stumptown heirloom. Disrupt 3 wolf moon gluten-free tattooed messenger bag, selvage try-hard jean shorts photo booth Godard. Post-ironic DIY cliche Godard, Blue Bottle health goth Wes Anderson farm-to-table. Post-ironic gentrify yr bitters. Migas squid whatever umami actually. Echo Park keytar Intelligentsia kogi cronut ugh.</p>
+</div>
 
-<hr>
-
-<h3>Subscription Plans <%= " - Sign in to Subscribe!" unless customer_signed_in? %> </h3>
+<h2>Subscription Plans <%= " - Sign in to Subscribe!" unless customer_signed_in? %> </h2>
 <div class="cards">
 <%- @plans.each do |p| %>
   <div class="card one-third">
     <!-- <div class="card-image"> -->
     <div class="card-header">
-      <h4><%= p.name %></h4>
+      <h3><%= p.name %></h3>
     </div>
     <div class="card-copy">
     <% if customer_signed_in? %>
