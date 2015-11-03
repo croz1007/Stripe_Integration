@@ -7,8 +7,13 @@ class CardsController < ApplicationController
   end
 
   def destroy
-    @customer.sources.retrieve(params[:id]).delete
-    sendToProfile("Card Deleted")
+    @subscriptions = @customer.subscriptions.all
+    @message = "Cannot delete last card because you still have subscriptions."
+    if @subscriptions.data.count <= 0
+      @customer.sources.retrieve(params[:id]).delete
+      @message = "Card Deleted"
+    end
+    sendToProfile(@message)
   end
 
   def edit

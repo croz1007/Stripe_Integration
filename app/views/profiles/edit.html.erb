@@ -1,0 +1,7 @@
+<h2>Add your details</h2>
+<hr>
+<%= form_tag("/profiles/#{@customer.id}", method: "put", id: "form_edit_profile", class: "form-group") do |f| %>
+  <p>Currency: <%= text_field_tag(:currency) %></p>
+  <p><%= submit_tag("Update Currency", class: "btn green") %></p>
+
+<% end %>

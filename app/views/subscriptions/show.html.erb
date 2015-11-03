@@ -1,0 +1,6 @@
+<h2>Subscription</h2>
+<p><strong>Name: </strong><%= @subscription.plan.name %></p>
+<p><strong>Billed: </strong><%= @subscription.plan.interval %></p>
+<p><strong>Amount: </strong><%=  number_to_currency(@subscription.plan.amount/100.0, format: "%u%n") %></p>
+<p><strong>Start Date: </strong><%= DateTime.strptime(@subscription.plan.created.to_s, '%s').to_date %></p>
+<%= link_to "Back", :back, class: "btn green" %>

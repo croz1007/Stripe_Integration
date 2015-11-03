@@ -36,7 +36,7 @@ class SubscriptionsController < ApplicationController
     opts = {:at_period_end => true} if params[:at_period_end]
 
     if @customer.subscriptions.retrieve(params[:id]).delete(opts)
-      redirect_to subscriptions_url, notice: 'Subscription was successfully canceled.'
+      redirect_to profiles_url, notice: 'Subscription was successfully canceled.'
     end
   rescue Stripe::StripeError => e
     flash[:error] = e.message
