@@ -22,15 +22,15 @@
             <% end %>
           </td>
           <td>
-            <strong>Name:</strong> <%= c.name %><br>
-            <strong>Address:</strong> <%= c.address_line1 %><br>
+            <div><strong>Name:</strong> <%= c.name %></div>
+            <div><strong>Address:</strong> <%= c.address_line1 %></div>
             <%- if !c.address_line2.nil? %>
-              <%= c.address_line2 %><br>
+              <div><%= c.address_line2 %></div>
             <% end %>
-            <strong>City:</strong> <%= c.address_city %><br>
-            <strong>State:</strong> <%= c.address_state %><br>
-            <strong>Zip:</strong> <%= c.address_zip %><br>
-            <strong>Country:</strong> <%= c.address_country %>
+            <div><strong>City:</strong> <%= c.address_city %></div>
+            <div><strong>State:</strong> <%= c.address_state %></div>
+            <div><strong>Zip:</strong> <%= c.address_zip %></div>
+            <div><strong>Country:</strong> <%= c.address_country %></div>
           </td>
           <td class="button_td">
             <%= button_to "Edit Card", edit_card_path(c.id), :method => :get, class: "btn green small" %>
