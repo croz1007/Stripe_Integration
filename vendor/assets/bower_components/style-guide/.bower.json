@@ -12,14 +12,13 @@
     "!src/**",
     "!README.md"
   ],
-  "_release": "3ecca629ad",
+  "_release": "f85d78b25f",
   "_resolution": {
     "type": "branch",
     "branch": "master",
-    "commit": "3ecca629ad6db06fdf5d011e4bf0c3257f51cc72"
+    "commit": "f85d78b25f6605bdee8af5589394a8854ba2d9db"
   },
-  "_source": "git://github.com/wtfluckey/style-guide.git",
+  "_source": "https://github.com/wtfluckey/style-guide.git",
   "_target": "*",
-  "_originalSource": "wtfluckey/style-guide",
-  "_direct": true
+  "_originalSource": "https://github.com/wtfluckey/style-guide.git"
 }
