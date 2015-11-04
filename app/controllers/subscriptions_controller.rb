@@ -36,10 +36,10 @@ class SubscriptionsController < ApplicationController
     opts = {:at_period_end => params[:at_period_end]} if params[:at_period_end]
 
     if @customer.subscriptions.retrieve(params[:id]).delete(opts)
-      @end_date = DateTime.strptime(@subscription.current_period_end.to_s, '%s').to_date
-      @cancel_date = DateTime.strptime(@subscription.canceled_at.to_s, '%s').to_date
-      @days = (@end_date - @cancel_date).to_i
-      
+      # @end_date = DateTime.strptime(@subscription.current_period_end.to_s, '%s').to_date
+      # @cancel_date = DateTime.strptime(@subscription.canceled_at.to_s, '%s').to_date
+      # @days = (@end_date - @cancel_date).to_i
+
       redirect_to profiles_url, notice: 'Subscription was successfully canceled.'
     end
   rescue Stripe::StripeError => e
