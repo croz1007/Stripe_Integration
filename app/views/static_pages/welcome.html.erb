@@ -7,17 +7,13 @@
 <div class="cards">
 <%- @plans.each do |p| %>
   <div class="card one-third">
-    <!-- <div class="card-image"> -->
     <div class="card-header">
       <h3><%= p.name %></h3>
     </div>
     <div class="card-copy">
     <% if customer_signed_in? %>
-      <!-- <div class="card-header"> -->
-        <%= link_to "Subscribe to #{p.name}", new_subscription_path(:plan_id => p.id), :method => :get, class: "btn green" %>
-      <!-- </div> -->
+      <%= link_to "Subscribe to #{p.name}", new_subscription_path(:plan_id => p.id), :method => :get, class: "btn green" %>
     <% end %>
-     <!-- <div class="card-copy"> -->
       <div><strong>Price:</strong> <%=  number_to_currency(p.amount/100.0, format: "%u%n") %></div>
       <div><strong>Description:</strong> <%= p.metadata.description %></div>
     </div>
