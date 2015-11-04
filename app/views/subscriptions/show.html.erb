@@ -1,6 +1,14 @@
 <h2>Subscription</h2>
-<div><strong>Name: </strong><%= @subscription.plan.name %></div>
-<div><strong>Billed: </strong><%= @subscription.plan.interval %><%= " as #{@subscription.plan.statement_descriptor}" unless @subscription.plan.statement_descriptor.blank? %></div>
-<div><strong>Amount: </strong><%=  number_to_currency(@subscription.plan.amount/100.0, format: "%u%n") %></div>
-<div><strong>Start Date: </strong><%= DateTime.strptime(@subscription.start.to_s, '%s').to_date %></div>
+<div class="cards">
+  <div class="card one-third">
+    <div class="card-header">
+      <div><strong></strong><%= @subscription.plan.name %></div>
+    </div>
+    <div class="card-copy">
+      <div><strong>Billed: </strong><%= @subscription.plan.interval %><%= " as #{@subscription.plan.statement_descriptor}" unless @subscription.plan.statement_descriptor.blank? %></div>
+      <div><strong>Amount: </strong><%=  number_to_currency(@subscription.plan.amount/100.0, format: "%u%n") %></div>
+      <div><strong>Start Date: </strong><%= DateTime.strptime(@subscription.start.to_s, '%s').to_date %></div>
+    </div>
+  </div>
+</div>
 <%= link_to "Back", :back, class: "btn green small" %>
