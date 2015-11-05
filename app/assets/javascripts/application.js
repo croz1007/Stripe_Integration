@@ -35,7 +35,7 @@ $(document).ready(function() {
 });
 
 function createStripeToken(){
-  Stripe.setPublishableKey('pk_test_8Watr62QvzgQHnLtBbf1yR0Q');
+  Stripe.setPublishableKey('pk_test_ADE1e7F4nbNdn4z1SUv2DPQT');
   Stripe.card.createToken({
     number: $("#number").val(),
     cvc: $("#cvc").val(),
