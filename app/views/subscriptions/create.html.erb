@@ -2,7 +2,5 @@
 <div>
   <p>You card will be charged <strong> <%= centsToDollars(@amount) %></strong> every <%= @plan.interval %> for a <%= @plan.name %> Subscription.</p>
 
-  <%= params[:event_json] %>
-
   <%= link_to "View your subscriptions", subscriptions_path %>
 </div>

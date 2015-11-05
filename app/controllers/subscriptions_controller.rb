@@ -25,8 +25,7 @@ class SubscriptionsController < ApplicationController
       redirect_to new_card_path(:no_card_yet => "true")
     else
       @customer.subscriptions.create(:plan => @plan.id)
-      event_json = request.body.read #JSON.parse(request.body.read)
-      redirect_to subscriptions_path(:event_json => event_json)
+      redirect_to subscriptions_path
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
