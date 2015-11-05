@@ -32,14 +32,12 @@ class SubscriptionsController < ApplicationController
   end
 
   def destroy
+    @subscription = @customer.subscriptions.retrieve(params[:id])
     opts = {}
     opts = {:at_period_end => params[:at_period_end]} if params[:at_period_end]
+    @refund_amount = calculate_refund_balance_due if params[:at_period_end]
 
-    if @customer.subscriptions.retrieve(params[:id]).delete(opts)
-      # @end_date = DateTime.strptime(@subscription.current_period_end.to_s, '%s').to_date
-      # @cancel_date = DateTime.strptime(@subscription.canceled_at.to_s, '%s').to_date
-      # @days = (@end_date - @cancel_date).to_i
-
+    if @subscription.delete(opts)
       redirect_to profiles_url, notice: 'Subscription was successfully canceled.'
     end
   rescue Stripe::StripeError => e
@@ -51,6 +49,21 @@ class SubscriptionsController < ApplicationController
 
   def get_stripe_customer
     @customer ||= Stripe::Customer.retrieve(current_customer.stripe_id)
+  end
+
+  def get_remaining_days
+    @end_date = DateTime.strptime(@subscription.current_period_end.to_s, '%s').to_date
+    @cancel_date = DateTime.strptime(@subscription.canceled_at.to_s, '%s').to_date
+    @days = (@end_date - @cancel_date).to_i
+  end
+
+  def calculate_refund_balance_due
+    get_remaining_days
+
+  end
+
+  def get_most_recent_paid_subscription_charge
+
   end
 
 end
