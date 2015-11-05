@@ -25,7 +25,8 @@ class SubscriptionsController < ApplicationController
       redirect_to new_card_path(:no_card_yet => "true")
     else
       @customer.subscriptions.create(:plan => @plan.id)
-      redirect_to webhooks_path
+      event_json = JSON.parse(request.body.read)
+      redirect_to webhooks_path(event_json)
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
