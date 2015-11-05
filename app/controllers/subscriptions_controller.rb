@@ -1,6 +1,7 @@
 # require 'pry'
 class SubscriptionsController < ApplicationController
-
+  Stripe.api_key = ENV['SECRET_KEY']
+  
   protect_from_forgery :except => :webhook
 
   before_filter :get_stripe_customer
