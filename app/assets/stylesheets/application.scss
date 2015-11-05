@@ -16,6 +16,10 @@
  */
 @import "style-guide/src/scss/style-guide.scss";
 
+body {
+    padding-bottom: 35px;
+}
+
 // Used temporarily for Navigation background
 header.navigation {
   $base-border-color: gainsboro !default;
