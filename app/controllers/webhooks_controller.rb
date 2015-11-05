@@ -1,8 +1,8 @@
 class WebhooksController < ApplicationController
 
   def index
-    # binding.pry
-    @response = params
+    event_json = JSON.parse(request.body.read)
+    @response = event_json
   end
 
 end
