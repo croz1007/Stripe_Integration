@@ -1,8 +1,5 @@
 # require 'pry'
 class SubscriptionsController < ApplicationController
-  Stripe.api_key = ENV['SECRET_KEY']
-
-  protect_from_forgery :except => :webhook
 
   before_filter :get_stripe_customer
 
@@ -28,9 +25,9 @@ class SubscriptionsController < ApplicationController
       redirect_to new_card_path(:no_card_yet => "true")
     else
       @customer.subscriptions.create(:plan => @plan.id)
-      # event_json = request.body.read #JSON.parse(request.body.read)
-      # redirect_to webhooks_path(:event_json => event_json)
-      webhook
+      Stripe.api_key = ENV['SECRET_KEY']
+      event_json = request.body.read #JSON.parse(request.body.read)
+      redirect_to webhooks_path(:event_json => event_json)
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -70,11 +67,6 @@ class SubscriptionsController < ApplicationController
 
   def get_most_recent_paid_subscription_charge
 
-  end
-
-  def webhook
-    event_json = request.body.read #JSON.parse(request.body.read)
-    redirect_to webhooks_path(:event_json => event_json.parameters)
   end
 
 end
