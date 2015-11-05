@@ -1,3 +1,5 @@
+require 'json'
+
 class WebhooksController < ApplicationController
 
   def index
