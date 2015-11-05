@@ -1,6 +1,8 @@
 # require 'pry'
 class SubscriptionsController < ApplicationController
 
+  protect_from_forgery :except => :webhook
+
   before_filter :get_stripe_customer
 
   def index
@@ -25,8 +27,9 @@ class SubscriptionsController < ApplicationController
       redirect_to new_card_path(:no_card_yet => "true")
     else
       @customer.subscriptions.create(:plan => @plan.id)
-      event_json = request.body.read #JSON.parse(request.body.read)
-      redirect_to webhooks_path(:event_json => event_json)
+      # event_json = request.body.read #JSON.parse(request.body.read)
+      # redirect_to webhooks_path(:event_json => event_json)
+      webhook
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
@@ -66,6 +69,11 @@ class SubscriptionsController < ApplicationController
 
   def get_most_recent_paid_subscription_charge
 
+  end
+
+  def webhook
+    event_json = request.body.read #JSON.parse(request.body.read)
+    redirect_to webhooks_path(:event_json => event_json)
   end
 
 end
