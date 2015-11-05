@@ -24,7 +24,8 @@ class SubscriptionsController < ApplicationController
     if @customer.default_source.nil?
       redirect_to new_card_path(:no_card_yet => "true")
     else
-      @customer.subscriptions.create(:plan => @plan.id)
+      @subscription = @customer.subscriptions.create(:plan => @plan.id)
+      redirect_to webhooks_path(:subscription => @subscription)
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
