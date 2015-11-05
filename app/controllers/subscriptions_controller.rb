@@ -25,11 +25,11 @@ class SubscriptionsController < ApplicationController
       redirect_to new_card_path(:no_card_yet => "true")
     else
       @customer.subscriptions.create(:plan => @plan.id)
-      redirect_to subscriptions_path
+      # redirect_to subscriptions_path
     end
   rescue Stripe::CardError => e
     flash[:error] = e.message
-    redirect_to subscriptions_path
+    redirect_to subscriptions_path, :notice => e.message
   end
 
   def destroy
