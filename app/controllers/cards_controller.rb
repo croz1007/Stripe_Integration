@@ -3,6 +3,7 @@ class CardsController < ApplicationController
   before_filter :get_stripe_customer
 
   def index
+    @title = "All Credit Cards"
     @cards = @customer.sources.all(:object => "card")
   end
 
