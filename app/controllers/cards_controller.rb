@@ -7,6 +7,7 @@ class CardsController < ApplicationController
   end
 
   def destroy
+    @title = " - Delete a card"
     @subscriptions = @customer.subscriptions.all
     @message = "Cannot delete last card because you still have subscriptions."
     if @subscriptions.data.count <= 0
@@ -17,11 +18,12 @@ class CardsController < ApplicationController
   end
 
   def edit
-    # redirect_to cards_url, :notice => @card
+    @title = " - Edit Credit Card"
     @card = @customer.sources.retrieve(params[:id])
   end
 
   def update
+    @title = "Update Credit Card"
     if params[:set_default]
       @customer.default_source = params[:id]
       @customer.save
@@ -33,11 +35,13 @@ class CardsController < ApplicationController
   end
 
   def new
+    @title = " - Add New Card"
     @no_card = params[:no_card_yet] unless nil
     @plan = params[:plan] unless nil
   end
 
   def create
+    @title = "Create New Card"
     @token = params[:token]
     @source = @customer.sources.create(:source => @token)
     if !params[:no_card].blank?

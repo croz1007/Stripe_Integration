@@ -4,13 +4,16 @@ class SubscriptionsController < ApplicationController
   before_filter :get_stripe_customer
 
   def index
+    @title = " - All Subscriptions"
   end
 
   def show
     @subscription = @customer.subscriptions.retrieve(params[:id])
+    @title = " - #{@subscription.plan.name} Subscription"
   end
 
   def new
+    @title = "New Subscription"
     @plan = Stripe::Plan.retrieve(params[:plan_id])
     @sources = @customer.sources.all
     if @sources.data.count <= 0
@@ -19,6 +22,7 @@ class SubscriptionsController < ApplicationController
   end
 
   def create
+    @title = "Create New Subscription"
     @plan = Stripe::Plan.retrieve(params[:plan_id])
     @amount = @plan.amount
     if @customer.default_source.nil?
@@ -34,6 +38,7 @@ class SubscriptionsController < ApplicationController
 
   def destroy
     @subscription = @customer.subscriptions.retrieve(params[:id])
+    @title = "Delete #{@subscription.plan.name}"
     opts = {}
     opts = {:at_period_end => params[:at_period_end]} if params[:at_period_end]
     @refund_amount = calculate_refund_balance_due if params[:at_period_end]

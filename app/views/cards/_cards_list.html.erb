@@ -33,7 +33,7 @@
             <div><strong>Country:</strong> <%= c.address_country %></div>
           </td>
           <td class="button_td">
-            <%= button_to "Edit Card", edit_card_path(c.id), :method => :get, class: "btn green small" %>
+            <%= button_to "Edit Card", edit_card_path(c.id), :method => :get, class: "btn default small" %>
             <%- if c.id != @customer.default_source -%>
               <%= button_to "Set as Default", card_path(c.id, :set_default => true), :method => :put, class: "btn orange small" %>
             <% end %>

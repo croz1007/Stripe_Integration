@@ -4,6 +4,7 @@ class ChargesController < ApplicationController
   end
 
   def create
+    @title = "Create New Charge"
     # Amount in cents from plan
     @amount = 500
 

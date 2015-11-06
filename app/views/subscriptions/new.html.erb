@@ -5,5 +5,5 @@
 <%= form_tag("/subscriptions", method: "post", class: "form-group") do |f| %>
   <%= hidden_field_tag :plan_id, @plan.id %>
   <!-- <p>Card to use: <%= select_tag(:source_id, options_from_collection_for_select(@sources, 'id', 'name')) %></p> -->
-  <%= submit_tag("Subscribe to #{@plan.name} plan", class: "btn green") %>
+  <%= submit_tag("Subscribe to #{@plan.name} plan", class: "btn default small") %>
 <% end %>
