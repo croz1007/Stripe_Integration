@@ -13,7 +13,7 @@ _____
     * Did it feel like Stripe expects you to just know stuff about credit card processing that you didn't?
 * A daily demo of progress to an interested stakeholder.
 * A publicly deployed, server-rendered Rails "subscription" app.
-    * URL: https://sleepy-brook-8938.herokuapp.com/
+    * URL: https://floating-harbor-5447.herokuapp.com/
 
 _____
 
