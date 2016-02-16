@@ -1,3 +1,5 @@
+[![Coverage Status](https://coveralls.io/repos/github/croz1007/Stripe_Integration/badge.svg?branch=master)](https://coveralls.io/github/croz1007/Stripe_Integration?branch=master)
+
 # Spike: Stripe Integration
 
 ## Spec Details
